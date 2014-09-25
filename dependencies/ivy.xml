@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="http://www.jayasoft.org/misc/ivy/samples/ivy.xsd">
+
+    <info organisation="vb" module="openTokenContracts"/>
+
+    <configurations>
+        <conf name="default"/>
+        <conf name="runtime" extends="default"/>
+        <conf name="tasks"/>
+        <conf name="contracts"/>
+    </configurations>
+
+    <publications>
+        <artifact name="openTokenContracts" type="jar" conf="default"/>
+        <artifact name="openTokenContracts-resources" type="jar" conf="contracts"/>
+    </publications>
+
+    <dependencies defaultconf="*->default">
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~TASKS, BUILD TOOLS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <dependency org="jaxb" name="jaxb" rev="2.2.7" conf="tasks->default"/>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~COMPILE, RUNTIME ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~TESTING~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    </dependencies>
+
+</ivy-module>

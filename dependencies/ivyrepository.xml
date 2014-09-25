@@ -1,0 +1,18 @@
+<ivysettings>
+
+    <typedef name="svn" classname="fm.last.ivy.plugins.svnresolver.SvnResolver"/>
+
+    <settings defaultResolver="default"/>
+    <resolvers>
+        <filesystem name="local_checkout">
+            <ivy pattern="${ivy.settings.dir}/../../ivy/[organisation]/[module]/[revision]/ivy.xml"/>
+            <artifact pattern="${ivy.settings.dir}/../../ivy/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"/>
+        </filesystem>
+        <chain name="default" returnFirst="true">
+            <resolver ref="local_checkout"/>
+        </chain>
+    </resolvers>
+    <modules>
+    </modules>
+</ivysettings>
+

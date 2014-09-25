@@ -1,0 +1,106 @@
+<project id=""
+         name="openTokenContracts, the Open Token schema which specifies its contract offered by issuers"
+         default="build"
+         xmlns:ivy="antlib:org.apache.ivy.ant">
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CONFIGURATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <property file="build-configuration.properties"/>
+    <property environment="env"/>
+
+    <path id="classpath.compile.main">
+        <fileset dir="${ivy.lib.dir}/runtime">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    <path id="classpath.compile.generated">
+        <path refid="classpath.compile.main"/>
+        <pathelement location="${classes.generated.dir}"/>
+    </path>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END CONFIGURATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ PUBLIC TARGETS (can depend on other targets) ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <target name="build" depends="
+            --clean.libs,
+            --clean,
+            --retrieve,
+            --taskdef.build,
+            --jaxb,
+            --compile,
+            --package.jar"
+            />
+
+    <target name="clean" depends="
+            --clean.libs,
+            --clean"
+            />
+
+    <target name="check" unless="build.notRequired">
+        <fail message="Build Required"/>
+    </target>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END PUBLIC TARGETS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ PRIVATE TARGETS (MUST NOT depend on other targets!) ~~~~~~~~~~~~~~~~~ -->
+    <target name="--clean">
+        <delete dir="${target.dir}"/>
+        <delete dir="${temp.dir}"/>
+    </target>
+
+    <target name="--clean.libs">
+        <delete dir="${ivy.lib.dir}"/>
+        <delete dir="${user.home}/.ivy2/cache"/>
+    </target>
+
+    <target name="--retrieve" description="--> retrieve dependencies with ivy">
+        <ivy:retrieve pattern="${ivy.lib.dir}/[conf]/[artifact].[ext]"/>
+    </target>
+
+    <target name="--taskdef.build">
+        <path id="tasks.lib">
+            <fileset dir="${ivy.lib.dir}/tasks">
+                <include name="*.jar"/>
+            </fileset>
+        </path>
+        <taskdef resource="tasks.properties" classpathref="tasks.lib"/>
+        <taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask" classpathref="tasks.lib"/>
+    </target>
+
+    <target name="--compile">
+        <mkdir dir="${ivy.lib.dir}/runtime"/>
+        <mkdir dir="${classes.generated.dir}"/>
+
+        <javac srcdir="${java.src.generated.dir}" destdir="${classes.generated.dir}" debug="true" fork="true" source="1.6"
+               target="1.6" includeantruntime="false">
+            <classpath refid="classpath.compile.main"/>
+        </javac>
+
+    </target>
+
+    <target name="--package.jar">
+        <mkdir dir="${distribution.dir}"/>
+        <jar destfile="${distribution.dir}/${distribution.artifact.name}.jar">
+            <fileset dir="${classes.generated.dir}">
+                <include name="com/vb/**/*"/>
+            </fileset>
+        </jar>
+
+        <jar destfile="${distribution.dir}/${distribution.artifact.name}-resources.jar">
+            <fileset dir="${resource.main.dir}">
+                <include name="XSD/vb/**/*.xsd"/>
+            </fileset>
+        </jar>
+
+    </target>
+
+    <target name="--jaxb">
+        <mkdir dir="${java.src.generated.dir}"/>
+        <xjc destdir="${java.src.generated.dir}" extension="true">
+            <schema dir="${resource.main.dir}/XSD" includes="**/*.xsd"/>
+        </xjc>
+    </target>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END PRIVATE TARGETS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+</project>
