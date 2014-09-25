@@ -10,10 +10,12 @@
     Thank you for your understanding. 
 -->
 
-<xs:schema targetNamespace="http://com/vb/coupon/dto"
+<xs:schema targetNamespace="http://open/token/dto"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:token="http://open/token/dto" xmlns:x="http://www.w3.org/2001/XMLSchema">
+
     <xs:include schemaLocation="tokenTypes.xsd"/>
+
 	<xs:element name="registerTokenReq">
 		<xs:complexType>
 			<xs:sequence>
