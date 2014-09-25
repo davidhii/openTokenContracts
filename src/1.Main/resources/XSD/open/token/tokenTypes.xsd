@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                                                   WARNING
+    Copyright 2014 Interactive Business Applications Limited, Hong Kong. www.interactivebusinessapplications.com
+	This XML structure together with the Voucher Blaster protocol and all works using it is the intellectual property of 
+    Interactive Business Applications Limited, Hong Kong. You may ONLY use this structure or systems which use it 
+    having first obtained a license from Interactive Business Applications Limited.
+    
+    This warning must not be removed from this schema under any circumstances nor can any of the contents be copied 
+    and used in any other document without written permission from Interactive Business Applications Limited.
+    Thank you for your understanding. 
+-->
+<xs:schema targetNamespace="http://open/token/dto" elementFormDefault="qualified" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:token="http://open/token/dto">
+
+    <xs:simpleType name="alphaIdType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="16"/>
+            <xs:minLength value="8"/>
+            <xs:pattern value="([a-zA-Z0-9])*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="genericType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="16"/>
+            <xs:minLength value="8"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="referenceType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="48"/>
+            <xs:minLength value="8"/>
+            <xs:pattern value="([a-zA-Z0-9])*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="channelToken">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="64"/>
+            <xs:minLength value="16"/>
+            <xs:pattern value="([a-zA-Z0-9])*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="password">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="150"/>
+            <xs:minLength value="100"/>
+            <xs:pattern value="([a-zA-Z0-9])*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="isoCountry">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="4"/>
+            <xs:maxLength value="2"/>
+            <xs:pattern value="([a-zA-Z])*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="emailAddress">
+        <xs:restriction base="xs:token">
+            <xs:maxLength value="32"/>
+            <xs:pattern value="[_\-a-zA-Z0-9\.\+]+@[a-zA-Z0-9](\.?[\-a-zA-Z0-9]*[a-zA-Z0-9])*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="countryCode">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+            <xs:pattern value="([0-9])*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="phoneNumber">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="6"/>
+            <xs:maxLength value="10"/>
+            <xs:pattern value="([0-9])*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="phoneNumberType">
+        <xs:sequence>
+            <xs:element name="countryCode" type="token:countryCode" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="mobileId" type="token:phoneNumber" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="postcode">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="7"/>
+            <xs:pattern value="([a-zA-Z0-9\s])*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="address">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="48"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="postalAddress">
+        <xs:sequence>
+            <xs:element name="addressLine1"  type="token:address"    minOccurs="1" maxOccurs="1"/>
+            <xs:element name="addressLine2"  type="token:address"    minOccurs="0" maxOccurs="1"/>
+            <xs:element name="addressLine3"  type="token:address"    minOccurs="0" maxOccurs="1"/>
+            <xs:element name="town"          type="token:address"    minOccurs="0" maxOccurs="1"/>
+            <xs:element name="state"         type="token:address"    minOccurs="0" maxOccurs="1"/>
+            <xs:element name="postcode"      type="token:postcode"   minOccurs="1" maxOccurs="1"/>
+            <xs:element name="country"       type="token:isoCountry" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="title">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="16"/>
+            <xs:pattern value="([a-zA-Z0-9\s])*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="name">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="16"/>
+            <xs:pattern value="([a-zA-Z0-9\s])*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="usageCount">
+        <xs:restriction base="xs:integer">
+            <xs:minExclusive value="1"/>
+            <xs:maxExclusive value="99"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="appURL">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="256"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+</xs:schema>
