@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                                                   WARNING
+    Copyright 2014 Interactive Business Applications Limited, Hong Kong. www.interactivebusinessapplications.com
+	This XML structure together with the Voucher Blaster protocol and all works using it is the intellectual property of
+    Interactive Business Applications Limited, Hong Kong. You may ONLY use this structure or systems which use it
+    having first obtained a license from Interactive Business Applications Limited.
+
+    This warning must not be removed from this schema under any circumstances nor can any of the contents be copied
+    and used in any other document without written permission from Interactive Business Applications Limited.
+    Thank you for your understanding.
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:token="http://open/token/dto"
+           targetNamespace="http://open/token/dto">
+
+    <xs:include schemaLocation="tokenTypes.xsd"/>
+
+    <xs:element name="loadTokenRep">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- if resultCode is zero, there is no errorMessage, the system has updated the user profile -->
+                <xs:element name="resultCode"   type="xs:string" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="errorMessage" type="xs:string" minOccurs="0" maxOccurs="1"/>
+
+                <xs:element name="tokens" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="token" type="token:token" minOccurs="1" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

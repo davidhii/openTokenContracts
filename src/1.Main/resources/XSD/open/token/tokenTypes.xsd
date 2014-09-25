@@ -52,8 +52,8 @@
 
     <xs:simpleType name="isoCountry">
         <xs:restriction base="xs:string">
-            <xs:minLength value="4"/>
-            <xs:maxLength value="2"/>
+            <xs:minLength value="2"/>
+            <xs:maxLength value="4"/>
             <xs:pattern value="([a-zA-Z])*"/>
         </xs:restriction>
     </xs:simpleType>
@@ -141,5 +141,39 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="encryptedKey">
+        <xs:restriction base="xs:hexBinary">
+            <xs:minLength value="96"/>
+            <xs:maxLength value="97"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="uniqueRefType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="20"/>
+            <xs:minLength value="20"/>
+            <xs:pattern value="([a-zA-Z0-9])*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="token">
+        <xs:sequence>
+            <xs:element name="tokenValue"     type="token:alphaIdType"   minOccurs="0" maxOccurs="1"/>
+            <xs:element name="tokenIssuerRef" type="token:alphaIdType"   minOccurs="1" maxOccurs="1"/>
+            <xs:element name="tokenExpiry"    type="xs:date"             minOccurs="1" maxOccurs="1"/>
+            <xs:element name="description"    type="xs:string"           minOccurs="1" maxOccurs="1"/>
+            <xs:element name="accountType"    type="xs:string"           minOccurs="1" maxOccurs="1"/>
+            <xs:element name="productType"    type="xs:string"           minOccurs="1" maxOccurs="1"/>
+            <xs:element name="cryptoRef"      type="token:uniqueRefType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="clearChars"     type="xs:string"           minOccurs="1" maxOccurs="1"/>
+            <xs:element name="dateIssued"     type="xs:date"             minOccurs="1" maxOccurs="1"/>
+            <xs:element name="accountExpiry"  type="xs:date"             minOccurs="0" maxOccurs="1"/>
+            <xs:element name="holderName"     type="token:name"          minOccurs="0" maxOccurs="1"/>
+            <xs:element name="holderAddress"  type="token:address"       minOccurs="0" maxOccurs="1"/>
+            <xs:element name="securityType"   type="xs:string"           minOccurs="1" maxOccurs="1"/>
+            <xs:element name="usageCount"     type="xs:int"              minOccurs="1" maxOccurs="1"/>
+            <xs:element name="maxUsage"       type="xs:int"              minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
 
 </xs:schema>

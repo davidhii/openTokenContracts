@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                                                   WARNING
+    Copyright 2014 Interactive Business Applications Limited, Hong Kong. www.interactivebusinessapplications.com
+	This XML structure together with the Voucher Blaster protocol and all works using it is the intellectual property of 
+    Interactive Business Applications Limited, Hong Kong. You may ONLY use this structure or systems which use it 
+    having first obtained a license from Interactive Business Applications Limited.
+    
+    This warning must not be removed from this schema under any circumstances nor can any of the contents be copied 
+    and used in any other document without written permission from Interactive Business Applications Limited.
+    Thank you for your understanding. 
+-->
+
+<xs:schema targetNamespace="http://open/token/dto"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:token="http://open/token/dto" xmlns:x="http://www.w3.org/2001/XMLSchema">
+
+    <xs:include schemaLocation="tokenTypes.xsd"/>
+
+	<xs:element name="loadTokenReq">
+		<xs:complexType>
+			<xs:sequence>
+                <xs:element name="issuerId"          type="token:alphaIdType"     minOccurs="1" maxOccurs="1"/>
+                <xs:element name="issuerRef"         type="token:alphaIdType"     minOccurs="1" maxOccurs="1"/>
+                <xs:element name="channelId"         type="token:referenceType"   minOccurs="0" maxOccurs="1"/>
+                <xs:element name="channelToken"      type="token:channelToken"    minOccurs="0" maxOccurs="1"/>
+                <xs:element name="channelPassword"   type="token:password"        minOccurs="0" maxOccurs="1"/>
+                <xs:element name="loadKey"           type="token:encryptedKey"    minOccurs="1" maxOccurs="1"/>
+
+            </xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
