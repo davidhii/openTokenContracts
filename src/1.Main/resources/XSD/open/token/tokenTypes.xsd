@@ -180,7 +180,7 @@
             <xs:element name="holderAddress"  type="token:address"       minOccurs="0" maxOccurs="1"/>
             <xs:element name="securityType"   type="xs:string"           minOccurs="1" maxOccurs="1"/>
             <xs:element name="usageCount"     type="xs:int"              minOccurs="1" maxOccurs="1"/>
-            <xs:element name="maxUsage"       type="xs:int"              minOccurs="1" maxOccurs="1"/>
+            <xs:element name="maxUsage"       type="xs:int"              minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
 
