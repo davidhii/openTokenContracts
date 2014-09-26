@@ -106,7 +106,7 @@
             <xs:element name="addressLine1"  type="token:address"    minOccurs="1" maxOccurs="1"/>
             <xs:element name="addressLine2"  type="token:address"    minOccurs="0" maxOccurs="1"/>
             <xs:element name="addressLine3"  type="token:address"    minOccurs="0" maxOccurs="1"/>
-            <xs:element name="town"          type="token:address"    minOccurs="0" maxOccurs="1"/>
+            <xs:element name="city"          type="token:address"    minOccurs="0" maxOccurs="1"/>
             <xs:element name="state"         type="token:address"    minOccurs="0" maxOccurs="1"/>
             <xs:element name="postcode"      type="token:postcode"   minOccurs="1" maxOccurs="1"/>
             <xs:element name="country"       type="token:isoCountry" minOccurs="1" maxOccurs="1"/>
@@ -155,6 +155,14 @@
             <xs:pattern value="([a-zA-Z0-9])*"/>
         </xs:restriction>
     </xs:simpleType>
+
+    <xs:complexType name="person">
+        <xs:sequence>
+            <xs:element name="firstName"  type="token:name" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="lastName"   type="token:name" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="otherNames" type="token:name"            minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
 
     <xs:complexType name="token">
         <xs:sequence>
