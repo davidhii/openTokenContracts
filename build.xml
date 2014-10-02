@@ -83,13 +83,13 @@
         <mkdir dir="${distribution.dir}"/>
         <jar destfile="${distribution.dir}/${distribution.artifact.name}.jar">
             <fileset dir="${classes.generated.dir}">
-                <include name="com/vb/**/*"/>
+                <include name="open/token/**/*"/>
             </fileset>
         </jar>
 
         <jar destfile="${distribution.dir}/${distribution.artifact.name}-resources.jar">
             <fileset dir="${resource.main.dir}">
-                <include name="XSD/vb/**/*.xsd"/>
+                <include name="XSD/open/token/**.xsd"/>
             </fileset>
         </jar>
 
