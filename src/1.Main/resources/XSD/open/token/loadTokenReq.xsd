@@ -24,7 +24,7 @@
                 <xs:element name="channelId"         type="token:referenceType"   minOccurs="0" maxOccurs="1"/>
                 <xs:element name="channelToken"      type="token:channelToken"    minOccurs="0" maxOccurs="1"/>
                 <xs:element name="channelPassword"   type="token:password"        minOccurs="0" maxOccurs="1"/>
-                <xs:element name="loadKey"           type="token:encryptedKey"    minOccurs="1" maxOccurs="1"/>
+                <xs:element name="loadKey"           type="token:loaderKey"       minOccurs="1" maxOccurs="1"/>
 
             </xs:sequence>
 		</xs:complexType>

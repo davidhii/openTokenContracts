@@ -147,7 +147,12 @@
             <xs:maxLength value="97"/>
         </xs:restriction>
     </xs:simpleType>
-
+    <xs:simpleType name="loaderKey">
+        <xs:restriction base="xs:hexBinary">
+            <xs:minLength value="16"/>
+            <xs:maxLength value="16"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:simpleType name="uniqueRefType">
         <xs:restriction base="xs:string">
             <xs:maxLength value="20"/>
